@@ -21,7 +21,7 @@ Add this flake to your NixOS configuration:
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nordvpn-flake.url = "github:conneroisu/nordvpn-flake";
+    nordvpn-flake.url = "github:connerohnesorge/nordvpn-flake";
   };
 
   outputs = { nixpkgs, nordvpn-flake, ... }: {
@@ -57,7 +57,7 @@ This will:
 
 #### Example Configuration
 
-See [dotfiles](https://github.com/conneroisu/dotfiles) for a complete example configuration namely [`flake.nix`](https://github.com/conneroisu/dotfiles/blob/main/flake.nix) and [`engineer.nix`](https://github.com/conneroisu/dotfiles/blob/main/modules/features/engineer.nix).
+See [dotfiles](https://github.com/connerohnesorge/dotfiles) for a complete example configuration namely [`flake.nix`](https://github.com/connerohnesorge/dotfiles/blob/main/flake.nix) and [`engineer.nix`](https://github.com/connerohnesorge/dotfiles/blob/main/modules/features/engineer.nix).
 
 ## Usage
 

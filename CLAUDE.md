@@ -52,7 +52,7 @@ nix build .#nordvpn
 ```nix
 # In your flake.nix:
 {
-  inputs.nordvpn-flake.url = "github:conneroisu/nordvpn-flake";
+  inputs.nordvpn-flake.url = "github:connerohnesorge/nordvpn-flake";
   
   outputs = { self, nixpkgs, nordvpn-flake, ... }: {
     nixosConfigurations.myhost = nixpkgs.lib.nixosSystem {
