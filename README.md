@@ -11,6 +11,8 @@ A NixOS flake providing the NordVPN client package and a NixOS module for easy s
 - 🚀 Systemd service integration
 - 🏗️ Support for x86_64-linux and aarch64-linux
 
+![NordVPN on KDE](assets/kde-visual.png)
+
 ## Installation
 
 ### As a Flake Input
