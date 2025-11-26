@@ -5,6 +5,14 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     hercules-ci-effects.url = "github:hercules-ci/hercules-ci-effects";
+    nordvpn-amd64-deb = {
+      url = "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/n/nordvpn/nordvpn_4.2.0_amd64.deb";
+      flake = false;
+    };
+    nordvpn-arm64-deb = {
+      url = "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/n/nordvpn/nordvpn_4.2.0_arm64.deb";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -12,6 +20,8 @@
     nixpkgs,
     flake-utils,
     hercules-ci-effects,
+    nordvpn-amd64-deb,
+    nordvpn-arm64-deb,
   }:
     flake-utils.lib.eachSystem ["x86_64-linux" "aarch64-linux"]
     (
@@ -21,7 +31,7 @@
           config.allowUnfree = true;
         };
 
-        nordvpn = pkgs.callPackage ./nordvpn.nix {};
+        nordvpn = pkgs.callPackage ./nordvpn.nix {inherit nordvpn-amd64-deb nordvpn-arm64-deb;};
       in {
         packages = {
           default = nordvpn;
@@ -61,13 +71,15 @@
     // {
       nixosModules = {
         default = self.nixosModules.nordvpn;
-        nordvpn = import ./module.nix;
+        nordvpn =
+          import ./module.nix {inherit nordvpn-amd64-deb nordvpn-arm64-deb;};
       };
-
       overlays = {
         default = self.overlays.nordvpn;
         nordvpn = final: prev: {
-          nordvpn = final.callPackage ./nordvpn.nix {};
+          nordvpn = final.callPackage ./nordvpn.nix {
+            inherit nordvpn-amd64-deb nordvpn-arm64-deb;
+          };
         };
       };
 
